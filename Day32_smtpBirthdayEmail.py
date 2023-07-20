@@ -2,6 +2,9 @@ import smtplib
 from random import randint
 import datetime as dt
 import pandas as pd
+from dotenv import dotenv_values
+
+datas = dotenv_values('Files/.env')
 
 data = pd.read_csv('Files/birthdays.csv')
 data_list = data.to_dict(orient="records")
@@ -11,8 +14,8 @@ def send_mail(receiver, message):
     connection = smtplib.SMTP(host='smtp.gmail.com', port=587)
     connection.starttls()
 
-    email = 'kabirkapoor265@gmail.com'
-    password = 'yyibhmubfytctpcz'
+    email = datas['email']
+    password = datas['password']
 
     connection.login(user=email, password=password)
     connection.sendmail(from_addr=email, to_addrs=receiver, msg=f'Subject:Happy Birthday!!\n\n{message}')
