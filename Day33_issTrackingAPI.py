@@ -2,9 +2,12 @@ import requests
 from datetime import datetime
 import time
 import smtplib
+from dotenv import dotenv_values
 
-email = 'kabirkapoor265@gmail.com'
-password = 'yyibhmubfytctpcz'
+data = dotenv_values("Files/.env")
+
+email = data['email']
+password = data['password']
 my_lat = 33.784309
 my_long = 72.738777
 
